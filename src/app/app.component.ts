@@ -1,0 +1,24 @@
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from './services/authentication.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService
+) {
+}
+// logout() {
+//   this.authenticationService.logout();
+
+// }
+// isAdmin(){
+//   this.authenticationService.currentUserValue.
+// }
+}
