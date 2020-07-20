@@ -1,1 +1,50 @@
-<p>editloan works!</p>
+<div class="container" width="25%">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li class=""><a routerLink="/search"> Search</a></li>   
+            <li class="" ><a routerLink="/addloan" > Add Loan</a></li>   
+            <li class="active"><a routerLink="/editloan"> Update Loan</a></li>  
+            <li class=""><a routerLink="/logout"> Logout</a></li>   
+          </ul>
+        </div>
+      </nav>
+      </div>
+    <br>
+    <br>
+    
+
+    <div class="container" width="25%">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="container editloan" 
+            ngModelGroup="editLoanData"
+            #editLoanData="ngModelGroup">
+    
+                <div class="container pt-3">
+
+                <input type="text" class="form-control" placeholder="Loan Number" 
+                ngModel 
+                name="loanNumber" 
+                #loanNumber="ngModel" 
+                value={{loanNumber}}/>
+    
+                <input type="text" class="form-control" placeholder="loan Type" 
+                ngModel 
+                name="loanType" 
+                #loanType="ngModel" />
+    
+                <input type="text" class="form-control" placeholder="loan Amount" 
+                ngModel 
+                name="amount" 
+                #amount="ngModel" />
+
+                <input type="text" class="form-control" placeholder="loan Term" 
+                ngModel 
+                name="loanTerm" 
+                #loanTerm="ngModel" />
+
+                <button class="btn btn-primary" type="submit" >Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
