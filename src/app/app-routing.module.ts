@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './helper/auth.guard';
 import { LoanDetailComponent } from './loan/loan-detail/loan-detail.component';
 import { LoanListComponent } from './loan/loan-list/loan-list.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'loan', component: LoanDetailComponent },
   { path: 'list', component: LoanListComponent },
+  {path:'register', component: RegisterComponent},
   { path: '**', redirectTo: 'list' }
 ];
 
