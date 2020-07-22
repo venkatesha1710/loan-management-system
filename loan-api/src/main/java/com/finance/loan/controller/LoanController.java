@@ -1,15 +1,22 @@
 package com.finance.loan.controller;
 
-import com.finance.loan.exception.ResourceNotFoundException;
-import com.finance.loan.model.LoanInfo;
-import com.finance.loan.repository.LoanRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import java.text.ParseException;
+import java.util.List;
 
 import javax.validation.Valid;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.finance.loan.model.LoanInfo;
+import com.finance.loan.service.LoanService;
+import com.finance.loan.vo.LoanInfoRequestVO;
+//import com.finance.loan.vo.LoanSearchRequestVO;
+import com.finance.loan.vo.LoanupdateRequestVO;
 
 /**
  * 
@@ -18,46 +25,29 @@ import java.util.List;
 @RequestMapping("/api")
 public class LoanController {
 
-    @Autowired
-    LoanRepository loanRepository;
+	@Autowired
+	LoanService loanservice;
+    
+    
 
-    @GetMapping("/loans")
+    @GetMapping("/loanslist")
     public List<LoanInfo> getAllLoans() {
-        return loanRepository.findAll();
+        return loanservice.getloans();
     }
 
-    @PostMapping("/loans")
-    public LoanInfo createLoan(@Valid @RequestBody LoanInfo loan) {
-        return loanRepository.save(loan);
+    @PostMapping("/addloan")
+    public LoanInfo createLoan(@Valid @RequestBody LoanInfoRequestVO loan) throws ParseException {
+        return loanservice.generateLoan(loan);
     }
 
-    @GetMapping("/loans/{loanNumber}")
-    public LoanInfo getLoanByNumber(@PathVariable(value = "loanNumber") Long loanNumber) {
-        return loanRepository.findById(loanNumber)
-                .orElseThrow(() -> new ResourceNotFoundException("Loan", "loannumber", loanNumber));
+//    @PostMapping("/searchloan")
+//    public LoanInfo getLoanByNumber(@Valid @RequestBody LoanSearchRequestVO searchLoan) {
+//        return loanservice.getLoanByAccount(searchLoan);
+//    }
+
+    @PostMapping("/updateloan")
+    public LoanInfo updateLoan(@Valid @RequestBody LoanupdateRequestVO loanDetails) {
+        return loanservice.modifyLoan(loanDetails);
     }
 
-    @PutMapping("/loans/{loanNumber}")
-    public LoanInfo updateLoan(@PathVariable(value = "loanNumber") Long loanNumber,
-                                           @Valid @RequestBody LoanInfo loanDetails) {
-
-    	LoanInfo loan = loanRepository.findById(loanNumber)
-                .orElseThrow(() -> new ResourceNotFoundException("Loan", "updatedLoan", loanNumber));
-
-        //TODO set the values
-
-
-        LoanInfo updatedLoan = loanRepository.save(loan);
-        return updatedLoan;
-    }
-
-    @DeleteMapping("/loans/{loanNumber}")
-    public ResponseEntity<?> deleteLoan(@PathVariable(value = "loanNumber") Long loanNumber) {
-        LoanInfo loan = loanRepository.findById(loanNumber)
-                .orElseThrow(() -> new ResourceNotFoundException("Loan", "loannumber", loanNumber));
-
-        loanRepository.delete(loan);
-
-        return ResponseEntity.ok().build();
-    }
 }
