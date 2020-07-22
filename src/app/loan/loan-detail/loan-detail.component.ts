@@ -37,9 +37,7 @@ export class LoanDetailComponent implements OnInit {
       this.loanForm = this.formBuilder.group({
           loanAmount: ['', Validators.required],
           loanTerm: ['', Validators.required],
-          loanManagementFees: ['', Validators.required],
           originationDate: ['', Validators.required],
-          originationAccount: ['', Validators.required],
           status: ['', Validators.required],
           firstName: ['', Validators.required],
           lastName: ['', Validators.required]
@@ -60,7 +58,7 @@ export class LoanDetailComponent implements OnInit {
       }
 
       this.loading = true;
-      this.loanService.saveLoan(this.f.loanAmount.value, this.f.loanTerm.value, this.f.loanManagementFees.value, this.f.originationDate.value,this.f.originationAccount.value, this.f.status.value, this.f.firstName.value, this.f.lastName.value)
+      this.loanService.saveLoan(this.f.loanAmount.value, this.f.loanTerm.value, this.f.originationDate.value, this.f.status.value, this.f.firstName.value, this.f.lastName.value)
           .pipe(first())
           .subscribe(
               data => {

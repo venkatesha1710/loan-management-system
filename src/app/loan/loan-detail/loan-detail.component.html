@@ -18,11 +18,7 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="loanTerm">Loan Term</label>
-                        <select class="custom-select form-control" formControlName="loanTerm" maxlength="100" [ngClass]="{ 'is-invalid': submitted && f.loanTerm.errors }" >
-                            <option value="" disabled>Choose Term</option>
-                            <option>Short Term</option>
-                            <option>Long Term</option>
-                         </select>
+                        <input type="text" formControlName="loanTerm"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.loanTerm.errors }" />
                         <div *ngIf="submitted && f.loanTerm.errors" class="invalid-feedback">
                             <div *ngIf="f.loanTerm.errors.required">Loan Term is required</div>
                         </div>
@@ -52,15 +48,6 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-group">
-                        <label for="loanManagementFees">Loan Management Fees</label>
-                        <input type="text" formControlName="loanManagementFees" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.loanManagementFees.errors }" />
-                        <div *ngIf="submitted && f.loanManagementFees.errors" class="invalid-feedback">
-                            <div *ngIf="f.loanManagementFees.errors.required">Loan Management Fees is required</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="form-group">
                         <label for="originationDate">Orgination Date</label>
                         <div class="row">
                             <div class="col-md-5">
@@ -73,17 +60,6 @@
                         </div>
                         <div *ngIf="submitted && f.originationDate.errors" class="invalid-feedback">
                             <div *ngIf="f.originationDate.errors.required">Origination Date is required</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label for="originationAccount" class="control-label">Origination Account</label>
-                        <input type="text" formControlName="originationAccount"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.originationAccount.errors }" />
-                        <div *ngIf="submitted && f.originationAccount.errors" class="invalid-feedback">
-                            <div *ngIf="f.originationAccount.errors.required">Origination Account is required</div>
                         </div>
                     </div>
                 </div>

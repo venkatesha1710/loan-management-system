@@ -42,15 +42,10 @@
         <button (click)="edit(row.loanNumber)"  mat-button >Edit</button>
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="remove" *ngIf="isAdmin">
-      <mat-header-cell *matHeaderCellDef> Remove </mat-header-cell>
-      <mat-cell *matCellDef="let row" >
-        <button mat-button >Remove</button>
-      </mat-cell>
-    </ng-container>
+
     <div *ngIf="isAdmin">
-    <mat-header-row *matHeaderRowDef="['loanNumber', 'status', 'loanAmount', 'loanTerm', 'firstName', 'lastName', 'edit', 'remove']"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: ['loanNumber', 'status', 'loanAmount', 'loanTerm', 'firstName', 'lastName', 'edit', 'remove']"></mat-row>
+    <mat-header-row *matHeaderRowDef="['loanNumber', 'status', 'loanAmount', 'loanTerm', 'firstName', 'lastName', 'edit']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['loanNumber', 'status', 'loanAmount', 'loanTerm', 'firstName', 'lastName', 'edit']"></mat-row>
 </div>
 <div *ngIf="!isAdmin">
     <!-- Header and Row Declarations -->

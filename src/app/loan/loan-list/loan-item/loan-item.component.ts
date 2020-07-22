@@ -26,9 +26,7 @@ export class LoanItemComponent implements OnInit {
         loanNumber: [{value : this.loan.loanNumber,disabled: true},Validators.required],
         loanAmount: [this.loan.loanAmount, Validators.required],
         loanTerm: [this.loan.loanTerm, Validators.required],
-        loanManagementFees: [this.loan.loanManagementFees, Validators.required],
         originationDate: [this.loan.originationDate, Validators.required],
-        originationAccount: [this.loan.originationAccount, Validators.required],
         status: [this.loan.status, Validators.required],
         firstName: [this.loan.borrower.firstName, Validators.required],
         lastName: [this.loan.borrower.lastName, Validators.required]
@@ -51,9 +49,7 @@ export class LoanItemComponent implements OnInit {
         loanNumber: ['', Validators.required],
         loanAmount: ['', Validators.required],
         loanTerm: ['', Validators.required],
-        loanManagementFees: ['', Validators.required],
         originationDate: ['', Validators.required],
-        originationAccount: ['', Validators.required],
         status: ['', Validators.required],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required]
@@ -74,7 +70,7 @@ onSubmit() {
     }
 
     this.loading = true;
-    this.loanService.updateLoan(this.f.loanNumber.value,this.f.loanAmount.value, this.f.loanTerm.value, this.f.loanManagementFees.value, this.f.originationDate.value,this.f.originationAccount.value, this.f.status.value, this.f.firstName.value, this.f.lastName.value)
+    this.loanService.updateLoan(this.f.loanNumber.value,this.f.loanAmount.value, this.f.loanTerm.value, this.f.originationDate.value, this.f.status.value, this.f.firstName.value, this.f.lastName.value)
         .pipe(first())
         .subscribe(
             data => {

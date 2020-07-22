@@ -23,13 +23,11 @@ export class Loan {
    public lien: Lien;
    public borrower:Person
    public status: string;
-   constructor (loanNumber: string, loanAmount: number, loanManagementFees: number, loanTerm: string, originationDate: Date, originationAccount: string, lien: Lien, borrower:Person, status: string) {
+   constructor (loanNumber: string, loanAmount: number, loanTerm: string, originationDate: Date, lien: Lien, borrower:Person, status: string) {
        this.loanNumber = loanNumber;
        this.loanAmount = loanAmount;
-       this.loanManagementFees = loanManagementFees;
        this.loanTerm = loanTerm;
        this.originationDate = originationDate;
-       this.originationAccount =originationAccount;
        this.lien = lien;
        this.borrower = borrower;
        this.status = status;
