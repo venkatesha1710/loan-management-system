@@ -2,7 +2,6 @@ package com.finance.loan.vo;
 
 public class LoanInfoRequestVO {
 	private String loanTerm;
-	private String loanNumber;
 	private String loanAmount;
 	private String firstName;
 	private String lastName;
@@ -19,18 +18,6 @@ public class LoanInfoRequestVO {
 	 */
 	public void setLoanTerm(String loanTerm) {
 		this.loanTerm = loanTerm;
-	}
-	/**
-	 * @return the loanNumber
-	 */
-	public String getLoanNumber() {
-		return loanNumber;
-	}
-	/**
-	 * @param loanNumber the loanNumber to set
-	 */
-	public void setLoanNumber(String loanNumber) {
-		this.loanNumber = loanNumber;
 	}
 	/**
 	 * @return the loanAmount

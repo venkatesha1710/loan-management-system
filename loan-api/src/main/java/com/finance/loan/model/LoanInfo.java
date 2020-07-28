@@ -17,10 +17,9 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
         allowGetters = true)
-@SequenceGenerator(name="seq", initialValue=100001, allocationSize=100)
 public class LoanInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long loanNumber;
     
     @Column(name = "loan_term", nullable = false)

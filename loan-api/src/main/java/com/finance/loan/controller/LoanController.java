@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import com.finance.loan.service.LoanService;
 import com.finance.loan.vo.LoanInfoRequestVO;
 //import com.finance.loan.vo.LoanSearchRequestVO;
 import com.finance.loan.vo.LoanupdateRequestVO;
+import com.finance.loan.vo.MessageResponseVO;
 
 /**
  * 
@@ -36,18 +38,15 @@ public class LoanController {
     }
 
     @PostMapping("/addloan")
-    public LoanInfo createLoan(@Valid @RequestBody LoanInfoRequestVO loan) throws ParseException {
-        return loanservice.generateLoan(loan);
+    public ResponseEntity<?> createLoan(@Valid @RequestBody LoanInfoRequestVO loan) throws ParseException {
+        loanservice.generateLoan(loan);
+        return ResponseEntity.ok(new MessageResponseVO("Loan created successfully!"));
     }
 
-//    @PostMapping("/searchloan")
-//    public LoanInfo getLoanByNumber(@Valid @RequestBody LoanSearchRequestVO searchLoan) {
-//        return loanservice.getLoanByAccount(searchLoan);
-//    }
-
     @PostMapping("/updateloan")
-    public LoanInfo updateLoan(@Valid @RequestBody LoanupdateRequestVO loanDetails) {
-        return loanservice.modifyLoan(loanDetails);
+    public ResponseEntity<?> updateLoan(@Valid @RequestBody LoanupdateRequestVO loanDetails) {
+        loanservice.modifyLoan(loanDetails);
+        return ResponseEntity.ok(new MessageResponseVO("Loan updated successfully!"));
     }
 
 }

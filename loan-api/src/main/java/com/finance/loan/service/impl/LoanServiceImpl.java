@@ -4,8 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.finance.loan.model.LoanInfo;
 import com.finance.loan.repository.LoanRepository;
@@ -14,6 +16,7 @@ import com.finance.loan.vo.LoanInfoRequestVO;
 //import com.finance.loan.vo.LoanSearchRequestVO;
 import com.finance.loan.vo.LoanupdateRequestVO;
 
+@Service
 public class LoanServiceImpl implements LoanService {
 	@Autowired
     LoanRepository loanRepository;
@@ -25,27 +28,25 @@ public class LoanServiceImpl implements LoanService {
 
 	@Override
 	public LoanInfo generateLoan(LoanInfoRequestVO loan) throws ParseException {
-		LoanInfo l = new LoanInfo();
-		l.setFirstName(loan.getFirstName());
-		l.setLastName(loan.getLastName());
-		l.setLoanAmount(loan.getLoanAmount());
-		Date lDate =new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").parse(loan.getLoanDate());  
-		l.setLoanDate(lDate);
-		l.setLoanStatus(loan.getLoanStatus());
-		l.setLoanTerm(loan.getLoanTerm());
-		return loanRepository.save(l);
+		LoanInfo loanInfo = new LoanInfo();
+		loanInfo.setFirstName(loan.getFirstName());
+		loanInfo.setLastName(loan.getLastName());
+		loanInfo.setLoanAmount(loan.getLoanAmount());
+		Date lDate =new SimpleDateFormat("dd-MM-yyyy").parse(loan.getLoanDate());  
+		loanInfo.setLoanDate(lDate);
+		loanInfo.setLoanStatus(loan.getLoanStatus());
+		loanInfo.setLoanTerm(loan.getLoanTerm());
+		return loanRepository.save(loanInfo);
 	}
-
-//	@Override
-//	public LoanInfo getLoanByAccount(LoanSearchRequestVO searchLloan) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 	@Override
 	public LoanInfo modifyLoan(LoanupdateRequestVO loanDetails) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<LoanInfo> loanEntity = loanRepository.findById(Long.parseLong(loanDetails.getLoanNumber()));
+		LoanInfo loanUpdateInfo = loanEntity.get();
+		loanUpdateInfo.setLoanAmount(loanDetails.getLoanAmount());
+		loanUpdateInfo.setLoanStatus(loanDetails.getLoanStatus());
+		loanUpdateInfo.setLoanTerm(loanDetails.getLoanTerm());
+		return loanRepository.save(loanUpdateInfo);
 	}
 
 }

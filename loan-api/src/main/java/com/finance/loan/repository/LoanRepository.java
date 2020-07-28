@@ -8,4 +8,5 @@ import com.finance.loan.model.LoanInfo;
 @Repository
 public interface LoanRepository extends JpaRepository<LoanInfo, Long> {
 
+
 }
