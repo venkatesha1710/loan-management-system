@@ -57,17 +57,16 @@ export class LoanDetailComponent implements OnInit {
           return;
       }
 
-      this.loading = true;
-      this.loanService.saveLoan(this.f.loanAmount.value, this.f.loanTerm.value, this.f.originationDate.value, this.f.status.value, this.f.firstName.value, this.f.lastName.value)
+      this.loading = true;let originalDate = new Date(this.f.originationDate.value);
+      let formattedDate = originalDate.getDate()+'-'+originalDate.getMonth()+'-'+originalDate.getFullYear()
+      this.loanService.saveLoan(this.f.loanAmount.value, this.f.loanTerm.value, formattedDate, this.f.status.value, this.f.firstName.value, this.f.lastName.value)
           .pipe(first())
           .subscribe(
               data => {
                   this.router.navigate([this.returnUrl]);
               },
               error => {
-                  console.error("not authenticated");
-                  //this.alertService.error(error);
-                  //this.loading = false;
+                  alert("Getting error while creating the loan");
               });
   }
 

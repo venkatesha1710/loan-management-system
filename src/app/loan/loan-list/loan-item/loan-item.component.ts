@@ -18,18 +18,17 @@ export class LoanItemComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  loans: Loan[];
   loan: Loan;
   getLoanForm(loanNumber) { 
-    this.loan =  this.loans.filter(loan => loan.loanNumber== loanNumber)[0];     
+    this.loan =  loanNumber;
     return this.formBuilder.group({
         loanNumber: [{value : this.loan.loanNumber,disabled: true},Validators.required],
         loanAmount: [this.loan.loanAmount, Validators.required],
         loanTerm: [this.loan.loanTerm, Validators.required],
         originationDate: [this.loan.originationDate, Validators.required],
         status: [this.loan.status, Validators.required],
-        firstName: [this.loan.borrower.firstName, Validators.required],
-        lastName: [this.loan.borrower.lastName, Validators.required]
+        firstName: [this.loan.firstName, Validators.required],
+        lastName: [this.loan.lastName, Validators.required]
     }) 
   } 
  
@@ -37,11 +36,10 @@ export class LoanItemComponent implements OnInit {
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
-      private loanService: LoanService
-      , private persistentService: PersistentService ) {
-        this.loans = persistentService.loanValues;
+      private loanService: LoanService) {
+
    loanService.loanToBeEdited.subscribe(
-       (loanNumber: string) => { this.loans = persistentService.loanValues;this.loanForm = this.getLoanForm(loanNumber)}  
+       //(loanNumber: string) => { this.loans = loanService.getLoanByLoanNumber(loanNumber);this.loanForm = this.getLoanForm(loanNumber)}  
    )
   }
   ngOnInit() {
@@ -70,16 +68,14 @@ onSubmit() {
     }
 
     this.loading = true;
-    this.loanService.updateLoan(this.f.loanNumber.value,this.f.loanAmount.value, this.f.loanTerm.value, this.f.originationDate.value, this.f.status.value, this.f.firstName.value, this.f.lastName.value)
+    this.loanService.updateLoan(this.f.loanNumber.value,this.f.loanAmount.value, this.f.loanTerm.value, this.f.status.value)
         .pipe(first())
         .subscribe(
             data => {
                 this.router.navigate([this.returnUrl]);
             },
             error => {
-                console.error("not authenticated");
-                //this.alertService.error(error);
-                //this.loading = false;
+                alert("Getting error while updating the loan");
             });
             this.loanService.isUpdated.emit(true);        
 }
