@@ -5,9 +5,9 @@
                     <div class="form-group">
                         <label for="loanNumber" class="control-label">Loan Number</label>
                         <input type="text" disabled formControlName="loanNumber"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.loanNumber.errors }" />
-                        <div *ngIf="submitted && f.loanNumber.errors" class="invalid-feedback">
+                        <!-- <div *ngIf="submitted && f.loanNumber.errors" class="invalid-feedback">
                             <div *ngIf="f.loanNumber.errors.required">Loan Number is required</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -42,9 +42,9 @@
                                 <mat-datepicker  #picker></mat-datepicker>
                             </div>
                         </div>
-                        <div *ngIf="submitted && f.originationDate.errors" class="invalid-feedback">
+                        <!-- <div *ngIf="submitted && f.originationDate.errors" class="invalid-feedback">
                             <div *ngIf="f.originationDate.errors.required">Origination Date is required</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -53,22 +53,31 @@
                     <div class="form-group">
                         <label for="firstName" class="control-label">First Name</label>
                         <input type="text" disabled formControlName="firstName"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <!-- <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                             <div *ngIf="f.firstName.errors.required">First Name is required</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="lastName" class="control-label">Last Name</label>
                         <input type="text" disabled formControlName="lastName"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <!-- <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                             <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="userName" class="control-label">User Name</label>
+                        <input type="text" disabled formControlName="userName"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                        <!-- <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                            <div *ngIf="f.userName.errors.required">User Name is required</div>
+                        </div> -->
+                    </div>
+                </div>
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="status">Loan Status</label>

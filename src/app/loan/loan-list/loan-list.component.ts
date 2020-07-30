@@ -3,7 +3,6 @@ import { Loan } from '../model/loan';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import {MatPaginator } from '@angular/material/paginator';
 import { LoanService } from '../../services/loan.service';
-import { PersistentService } from '../../services/persistent.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
@@ -39,7 +38,7 @@ export class LoanListComponent implements OnInit {
     this.emitLoan(loanNumber);
   }
   emitLoan(loanNumber: any) {
-    this.loanService.loanToBeEdited.emit(this.loans.filter(loan => loan.loanNumber=== loanNumber)[0]);
+    this.loanService.loanToBeEdited.emit(this.dataSource.data.filter(loan => loan.loanNumber === loanNumber)[0]);
   }
  applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

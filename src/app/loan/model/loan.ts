@@ -7,7 +7,8 @@ export class Loan {
    public firstName: string;
     public lastName: string;
    public status: string;
-   constructor (loanNumber: string, loanAmount: number, loanTerm: string, originationDate: Date, firstName: string, lastName: string,  status: string) {
+   public userName: string;
+   constructor (loanNumber: string, loanAmount: number, loanTerm: string, originationDate: Date, firstName: string, lastName: string,  status: string, userName: string) {
        this.loanNumber = loanNumber;
        this.loanAmount = loanAmount;
        this.loanTerm = loanTerm;
@@ -15,5 +16,6 @@ export class Loan {
        this.firstName = firstName;
        this.lastName = lastName;
        this.status = status;
+       this.userName = userName;
    }
 }

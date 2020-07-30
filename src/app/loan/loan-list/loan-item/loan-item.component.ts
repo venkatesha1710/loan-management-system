@@ -19,8 +19,8 @@ export class LoanItemComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   loan: Loan;
-  getLoanForm(loanNumber) { 
-    this.loan =  loanNumber;
+  getLoanForm(loan) { 
+    this.loan =  loan;
     return this.formBuilder.group({
         loanNumber: [{value : this.loan.loanNumber,disabled: true},Validators.required],
         loanAmount: [this.loan.loanAmount, Validators.required],
@@ -28,7 +28,8 @@ export class LoanItemComponent implements OnInit {
         originationDate: [this.loan.originationDate, Validators.required],
         status: [this.loan.status, Validators.required],
         firstName: [this.loan.firstName, Validators.required],
-        lastName: [this.loan.lastName, Validators.required]
+        lastName: [this.loan.lastName, Validators.required],
+        userName: [this.loan.userName, Validators.required]
     }) 
   } 
  
@@ -39,18 +40,19 @@ export class LoanItemComponent implements OnInit {
       private loanService: LoanService) {
 
    loanService.loanToBeEdited.subscribe(
-       //(loanNumber: string) => { this.loans = loanService.getLoanByLoanNumber(loanNumber);this.loanForm = this.getLoanForm(loanNumber)}  
+    (loan: Loan) => { this.loanForm = this.getLoanForm(loan) }
    )
   }
   ngOnInit() {
     this.loanForm = this.formBuilder.group({
-        loanNumber: ['', Validators.required],
+        loanNumber: [{ value: '', disabled: true }, Validators.required],
         loanAmount: ['', Validators.required],
         loanTerm: ['', Validators.required],
         originationDate: ['', Validators.required],
         status: ['', Validators.required],
         firstName: ['', Validators.required],
-        lastName: ['', Validators.required]
+        lastName: ['', Validators.required],
+        userName: ['', Validators.required]
     });
 
     // get return url from route parameters or default to '/'
@@ -68,16 +70,18 @@ onSubmit() {
     }
 
     this.loading = true;
-    this.loanService.updateLoan(this.f.loanNumber.value,this.f.loanAmount.value, this.f.loanTerm.value, this.f.status.value)
+    this.loanService.updateLoan(this.f.loanNumber.value, this.f.loanAmount.value, this.f.loanTerm.value, this.f.status.value)
         .pipe(first())
         .subscribe(
             data => {
-                this.router.navigate([this.returnUrl]);
+                this.loanService.isUpdated.emit(true);  
+                //this.router.navigate([this.returnUrl]);
+                alert("Loan updated successfully");
             },
             error => {
                 alert("Getting error while updating the loan");
             });
-            this.loanService.isUpdated.emit(true);        
+                  
 }
 
 }

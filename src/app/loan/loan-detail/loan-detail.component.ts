@@ -4,9 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { LoanService } from '../../services/loan.service';
 import { Loan } from '../model/loan';
-import { Lien } from '../model/lien';
-import { Person } from '../model/person';
-import { Address } from '../model/models';
 
 
 @Component({
@@ -40,7 +37,8 @@ export class LoanDetailComponent implements OnInit {
           originationDate: ['', Validators.required],
           status: ['', Validators.required],
           firstName: ['', Validators.required],
-          lastName: ['', Validators.required]
+          lastName: ['', Validators.required],
+          userName: ['', Validators.required]
       });
 
       // get return url from route parameters or default to '/'
@@ -57,9 +55,10 @@ export class LoanDetailComponent implements OnInit {
           return;
       }
 
-      this.loading = true;let originalDate = new Date(this.f.originationDate.value);
+      this.loading = true;
+      let originalDate = new Date(this.f.originationDate.value);
       let formattedDate = originalDate.getDate()+'-'+originalDate.getMonth()+'-'+originalDate.getFullYear()
-      this.loanService.saveLoan(this.f.loanAmount.value, this.f.loanTerm.value, formattedDate, this.f.status.value, this.f.firstName.value, this.f.lastName.value)
+      this.loanService.saveLoan(this.f.loanAmount.value, this.f.loanTerm.value, formattedDate, this.f.status.value, this.f.firstName.value, this.f.lastName.value, this.f.userName.value)
           .pipe(first())
           .subscribe(
               data => {

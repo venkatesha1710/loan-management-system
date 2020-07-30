@@ -17,14 +17,14 @@ export class LoanService {
     constructor(private persistentService: PersistentService, private http: HttpClient) {
     }
 
-    loanToBeEdited = new EventEmitter<string>();
+    loanToBeEdited = new EventEmitter<Loan>();
     isUpdated = new EventEmitter<boolean>();
-    saveLoan(loanAmount, loanTerm, originationDate, status, firstName, lastName): Observable<Loan>{
+    saveLoan(loanAmount, loanTerm, originationDate, status, firstName, lastName, userName): Observable<Loan>{
         const headers = { 
             'Access-Control-Allow-Origin': 'http://localhost:4200/*',
              'Access-Control-Allow-Methods': 'POST', 
              'Access-Control-Allow-Headers':'Origin'};
-        return this.http.post<Loan>(`${environment.apiUrl}/api/addloan`, { loanAmount, loanTerm, originationDate, status, firstName, lastName, headers })
+        return this.http.post<Loan>(`${environment.apiUrl}/api/addloan`, { loanAmount, loanTerm, originationDate, status, firstName, lastName, userName, headers })
     } 
 
     updateLoan(loanNumber, loanAmount, loanTerm, status): Observable<Loan>{
