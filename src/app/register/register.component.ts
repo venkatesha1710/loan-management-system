@@ -26,7 +26,8 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required],
       phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      role: ['', Validators.required]
   });
   }
   // convenience getter for easy access to form fields
@@ -41,7 +42,8 @@ export class RegisterComponent implements OnInit {
       }
 
       this.loading = true;
-      this.authenticationService.register(this.registerform.value)
+      this.authenticationService.register(this.f.firstName.value, this.f.lastName.value, this.f.email.value,
+        this.f.phoneNumber.value, this.f.username.value, this.f.password.value, this.f.role.value)
             .pipe(first())
             .subscribe(
                 data => {

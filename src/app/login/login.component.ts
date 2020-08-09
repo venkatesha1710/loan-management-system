@@ -55,11 +55,12 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);
+                    this.authenticationService.isAdmin.emit(this.authenticationService.currentUserValue.role == "admin");
                 },
                 error => {
                     console.error("not authenticated");
                     //this.alertService.error(error);
-                    //this.loading = false;
+                    this.loading = false;
                 });
     }
 }
