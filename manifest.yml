@@ -1,0 +1,7 @@
+applications:
+- name: raboloan
+  memory: 512M
+  path: dist/
+  random-route: false
+  buildpacks:
+  - staticfile_buildpack
