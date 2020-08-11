@@ -52,7 +52,7 @@ export class LoanListComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.filterPredicate = (data: Loan, filter: string) => {
     
-        return (data.loanNumber.includes(filter)||data.firstName.toLowerCase().includes(filter)||data.lastName.toLowerCase().includes(filter));
+        return (data.loanNumber.toString().includes(filter)||data.firstName.toLowerCase().includes(filter)||data.lastName.toLowerCase().includes(filter));
        };
     })
   }
