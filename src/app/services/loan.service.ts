@@ -21,7 +21,7 @@ export class LoanService {
     isUpdated = new EventEmitter<boolean>();
     saveLoan(loanAmount, loanTerm, originationDate, status, firstName, lastName, userName): Observable<Loan>{
         const headers = { 
-            'Access-Control-Allow-Origin': 'http://localhost:4200/*',
+            'Access-Control-Allow-Origin': 'https://raboloanapplication.cfapps.io/*',
              'Access-Control-Allow-Methods': 'POST', 
              'Access-Control-Allow-Headers':'Origin'};
         return this.http.post<Loan>(`${environment.apiUrl}/api/addloan`, { loanAmount, loanTerm, originationDate, status, firstName, lastName, userName, headers })
@@ -29,7 +29,7 @@ export class LoanService {
 
     updateLoan(loanNumber, loanAmount, loanTerm, status): Observable<Loan>{
         const headers = { 
-            'Access-Control-Allow-Origin': 'http://localhost:4200/*',
+            'Access-Control-Allow-Origin': 'https://raboloanapplication.cfapps.io/*',
              'Access-Control-Allow-Methods': 'POST', 
              'Access-Control-Allow-Headers':'Origin'};
         return this.http.post<Loan>(`${environment.apiUrl}/api/updateloan`, { loanNumber,loanAmount, loanTerm, status, headers })
@@ -37,7 +37,7 @@ export class LoanService {
 
     getLoans(): Observable<Loan>{
         const headers = { 
-            'Access-Control-Allow-Origin': 'http://localhost:4200/*',
+            'Access-Control-Allow-Origin': 'https://raboloanapplication.cfapps.io/*',
              'Access-Control-Allow-Methods': 'GET', 
              'Access-Control-Allow-Headers':'Origin'};
         return this.http.get<Loan>(`${environment.apiUrl}/api/loanslist`, { headers })
@@ -45,7 +45,7 @@ export class LoanService {
 
     getLoanByLoanNumber(loanNumber): Observable<Loan[]>{
         const headers = { 
-            'Access-Control-Allow-Origin': 'http://localhost:4200/*',
+            'Access-Control-Allow-Origin': 'https://raboloanapplication.cfapps.io/*',
              'Access-Control-Allow-Methods': 'GET', 
              'Access-Control-Allow-Headers':'Origin'};
         return this.http.get<Loan[]>(`${environment.apiUrl}/api/getLoanInfo/${loanNumber}`, { headers })
