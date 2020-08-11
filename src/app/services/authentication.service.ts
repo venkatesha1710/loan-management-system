@@ -38,7 +38,7 @@ export class AuthenticationService {
 
     login(username, password): Observable<User> {
         const headers = { 
-            'Access-Control-Allow-Origin': 'http://localhost:4200/*',
+            'Access-Control-Allow-Origin': 'https://raboloanapplication.cfapps.io/*',
              'Access-Control-Allow-Methods': 'GET', 
              'Access-Control-Allow-Headers':'Origin'};
         return this.http.get<User>(`${environment.apiUrl}/users/signin?username=${username}&password=${password}`, { headers })
@@ -59,7 +59,7 @@ export class AuthenticationService {
 
     register(firstName, lastName, email, phoneNumber, userName, password, role): Observable<Profile>{
         const headers = { 
-            'Access-Control-Allow-Origin': 'http://localhost:4200/*',
+            'Access-Control-Allow-Origin': 'https://raboloanapplication.cfapps.io/*',
              'Access-Control-Allow-Methods': 'POST', 
              'Access-Control-Allow-Headers':'Origin'};
         return this.http.post<Profile>(`${environment.apiUrl}/users/register`, { firstName, lastName, email, phoneNumber, userName, password, role, headers })
