@@ -4,10 +4,10 @@
     </div>
 </div>-->
 <app-home></app-home>
-<div class="row">
+<div class="row" style="background-color:blanchedalmond;">
 <app-loan-item [hidden]="isListOnly"></app-loan-item>
 </div>
-<div class="row">
+<div class="row" >
 <mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="loanNumber">
       <mat-header-cell *matHeaderCellDef> Loan Number </mat-header-cell>

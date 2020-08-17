@@ -48,8 +48,8 @@
                     <label for="status">Role</label>
                     <select class="custom-select form-control" formControlName="role" maxlength="100" [ngClass]="{ 'is-invalid': submitted && f.role.errors }" >
                         <option value="" disabled>Choose Role</option>
-                        <option>ADMIN</option>
-                        <option>USER</option>
+                        <option>admin</option>
+                        <option>user</option>
                      </select>
                     <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
                         <div *ngIf="f.role.errors.required">Role is required</div>
